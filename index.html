@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Processor</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Pengu.ai</h1>
+    <label for="options">Choose Language:</label>
+    <select id="options">
+        <option value="banana">English</option>
+        <option value="apple">മലയാളം</option>
+    </select>
+
+    <input type="text" id="inputText" placeholder="Type something..." />
+    <button onclick="processText()">Submit</button>
+    <div id="output"></div>
+  </div>
+
+    <script>
+        function processText() {
+            const dropdown = document.getElementById("options");
+            const selectedValue = dropdown.value;
+            const selectedText = dropdown.options[dropdown.selectedIndex].text;
+            var input = document.getElementById("inputText").value;
+            input = "Pengukindi is a magical empire ruled by Jagannathan. Jagannathan is an omnipotent who can do anything. Sarassamma is a evil girl in Pengukindi. Bhaskaran is a singer. Sugunan is a writer. And Preman collects froth from sea. Answer the following question in a knowledgable yet humorous tone using pengukindi reference. Question :" + input;
+            if (selectedText == "Malayalam") {
+                input = "answer in malayalam: " + input;
+            }
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerText = "Pengu.ai is thinking...";
+
+            fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBv-qC2EHDrN4utoTuPcESsLdtogpBtKho', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "contents": [
+                        {
+                            "parts": [
+                                {
+                                    "text": input
+                                }
+                            ]
+                        }
+                    ]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Extract the result text from the API response
+                let result = "";
+                if (
+                    data &&
+                    data.candidates &&
+                    data.candidates[0] &&
+                    data.candidates[0].content &&
+                    data.candidates[0].content.parts &&
+                    data.candidates[0].content.parts[0] &&
+                    data.candidates[0].content.parts[0].text
+                ) {
+                    result = data.candidates[0].content.parts[0].text;
+                } else {
+                    result = "No response received.";
+                }
+                outputDiv.innerText = result;
+            })
+            .catch(error => {
+
+                fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAVy08y5Qiznu-UGAiHBdHjx-plfHUC_kU', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "contents": [
+                        {
+                            "parts": [
+                                {
+                                    "text": input
+                                }
+                            ]
+                        }
+                    ]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Extract the result text from the API response
+                let result = "";
+                if (
+                    data &&
+                    data.candidates &&
+                    data.candidates[0] &&
+                    data.candidates[0].content &&
+                    data.candidates[0].content.parts &&
+                    data.candidates[0].content.parts[0] &&
+                    data.candidates[0].content.parts[0].text
+                ) {
+                    result = data.candidates[0].content.parts[0].text;
+                } else {
+                    result = "No response received.";
+                }
+                outputDiv.innerText = result;
+            })
+            .catch(error => {
+                console.error('Error fetching URL:', error);
+                outputDiv.innerText = "Error: " + "Sorry, Jagannathan is sleeping... shshshshshhh....";
+            });
+            });
+        }
+    </script>
+</body>
+</html>
