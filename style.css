@@ -1,70 +1,80 @@
-/* Reset default browser styles */
+/* RESET + BASE */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #dfe9f3, #ffffff);
-    padding: 1rem;
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #eef2f3, #ffffff);
+
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    padding: 1rem;
 }
 
-/* Main container */
+/* CONTAINER */
 .container {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
     width: 100%;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Title */
+/* HEADLINE */
 h1 {
+    font-size: 3.6rem;
     text-align: center;
+    margin-bottom: 1.2rem;
     color: #2c3e50;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
 }
 
-/* Label + input/select field styles */
+/* LABEL + FORM ELEMENTS */
 label {
+    font-weight: 600;
+    font-size: 1.95rem;
+    color: #333;
     margin-bottom: 0.5rem;
     display: block;
-    font-weight: bold;
-    color: #333;
 }
 
-select, input {
-    width: 100%;
+input[type="text"], button {
+    width: 98%;
+    font-size: 3rem;
     padding: 0.75rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
+    border-radius: 6px;
     border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    transition: border-color 0.3s;
 }
 
-select:focus, input:focus {
+select {
+    width: 100%;
+    font-size: 2.5rem;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+select.shrink-text {
+    font-size: 0.75rem;
+}
+
+input:focus, select:focus {
     border-color: #3498db;
     outline: none;
 }
 
-/* Button */
+/* BUTTON */
 button {
-    width: 100%;
-    padding: 0.75rem;
     background-color: #3498db;
     color: white;
     border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -73,27 +83,30 @@ button:hover {
     background-color: #2980b9;
 }
 
-/* Output box */
+/* OUTPUT */
 #output {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background-color: #f4f6f8;
+    background-color: #f8fafd;
     border-left: 4px solid #3498db;
-    border-radius: 0.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
     color: #2c3e50;
     white-space: pre-wrap;
-    word-wrap: break-word;
 }
 
-/* Responsive Design for Mobile */
-@media screen and (max-width: 480px) {
+/* MOBILE TWEAKS */
+@media screen and (max-width: 500px) {
+    html, body {
+        padding: 0.5rem;
+    }
+
     .container {
-        padding: 1.2rem;
+        padding: 1rem;
         border-radius: 0.75rem;
     }
 
     h1 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
 
     select, input, button {
