@@ -8,17 +8,17 @@
 <body>
   <div class="container">
     <h1>Pengu.ai</h1>
-    <label for="options">Choose your Language:</label>
+    <label for="options">Choose Language:</label>
     <select id="options">
-        <option value="banana">English</option>
-        <option value="apple">മലയാളം</option>
+        <option value="english">English</option>
+      <option value="malayalam">മലയാളം</option>
     </select>
 
-    <input type="text" id="inputText" placeholder="Type something..." />
+    <input type="text" id="inputText" placeholder="Ask your question..." />
     <button onclick="processText()">Submit</button>
+
     <div id="output"></div>
   </div>
-
     <script>
         function processText() {
             const dropdown = document.getElementById("options");
